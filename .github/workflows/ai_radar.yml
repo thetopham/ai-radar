@@ -2,33 +2,32 @@ name: AI Radar (daily)
 
 on:
   schedule:
-    - cron:  '0 15 * * *'   # 15:00 UTC ~ 09:00 America/Denver
-  workflow_dispatch:
+    - cron: '0 15 * * *'     # runs 15:00 UTC ≈ 9:00 AM Denver
+  workflow_dispatch:          # allow manual runs
+
+permissions:
+  contents: write             # let the job commit back to the repo
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   run:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Install deps
-        run: |
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: |
           python -m pip install --upgrade pip
           pip install feedparser
-
-      - name: Run AI Radar
-        run: |
           python ai_radar.py
-
-      - name: Commit & push changes
+      - name: Commit & push if changed
         run: |
           git config user.name "ai-radar-bot"
-          git config user.email "ai-radar-bot@example.com"
+          git config user.email "bot@users.noreply.github.com"
           git add products.csv digests/ || true
           if ! git diff --cached --quiet; then
             git commit -m "chore: daily radar update"

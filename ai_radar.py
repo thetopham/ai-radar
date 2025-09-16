@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-AI Radar — v1.3
+AI Radar — v1.4
 - Loads feeds from OPML if present; falls back to built-ins
 - Classifies status (Announced/Shipped/Upgraded/Preview/Deprecated/Delayed)
 - Dedupe & append to products.csv

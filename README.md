@@ -12,8 +12,10 @@ produces both a canonical CSV and a daily digest you can share with your team.
   status (`Announced`, `Preview`, `Upgraded`, `Shipped`, `Deprecated`, `Delayed`).
 - Deduplicates entries by source URL, tracks promotions when a status improves,
   and keeps `products.csv` sorted for easy imports into Sheets/Notion.
+- Enriches entries with vertical tags derived from the OPML hierarchy so
+  robotics/XR-focused sources are easy to segment.
 - Emits markdown digests in `digests/daily_YYYY-MM-DD.md` containing every new
-  or promoted item.
+  or promoted item with cleaned, digest-sized summaries.
 
 ## Local setup
 1. (Optional) Create a virtualenv: `python -m venv .venv && source .venv/bin/activate`

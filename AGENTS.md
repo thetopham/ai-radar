@@ -1,5 +1,11 @@
 # Repository Guidelines
 
+## Recent Pipeline Improvements (v1.3)
+- Daily digests now merge both net-new items and any status promotions surfaced by `upsert`, so keep promotion heuristics intact when refactoring.
+- Feed ingestion assigns vertical tags (`ai`, `robotics`, `xr`, `research`) from `ai_radar_sources.opml`; updates to the OPML should preserve those labels so digest tagging stays accurate.
+- Item summaries are normalised via `normalize_summary`, producing clean ≤500 character blurbs for digests—preserve this helper when adjusting feed parsing.
+- Daily digests respect `AI_RADAR_DIGEST_DAYS`, `AI_RADAR_DIGEST_LIMIT`, and `AI_RADAR_SKIP_FIRST_DIGEST`; document new environment knobs in module docstrings when adding more controls.
+
 ## Project Structure & Module Organization
 - `ai_radar.py` runs the daily pipeline: ingest RSS feeds, classify status, and update outputs.
 - `products.csv` is the canonical dataset; treat schema changes as breaking and coordinate before modifying.

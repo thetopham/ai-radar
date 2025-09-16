@@ -1,6 +1,6 @@
 # Repository Guidelines
 
-## Recent Pipeline Improvements (v1.3)
+## Recent Pipeline Improvements (v1.4)
 - Daily digests now merge both net-new items and any status promotions surfaced by `upsert`, so keep promotion heuristics intact when refactoring.
 - Feed ingestion assigns vertical tags (`ai`, `robotics`, `xr`, `research`) from `ai_radar_sources.opml`; updates to the OPML should preserve those labels so digest tagging stays accurate.
 - Item summaries are normalised via `normalize_summary`, producing clean ≤500 character blurbs for digests—preserve this helper when adjusting feed parsing.

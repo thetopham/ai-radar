@@ -11,7 +11,7 @@ Env (optional):
   AI_RADAR_DIGEST_LIMIT=50
   AI_RADAR_SKIP_FIRST_DIGEST=0
 """
-import os, re, csv, hashlib, datetime, time, xml.etree.ElementTree as ET
+import os, re, csv, hashlib, datetime, time, html, xml.etree.ElementTree as ET
 from urllib.parse import urlparse
 
 try:
@@ -73,6 +73,24 @@ def guess_category(text):
         if re.search(pattern, t):
             return label
     return "Model/API"
+
+
+def normalize_summary(summary_text, fallback):
+    """Return a cleaned paragraph summary from feed content."""
+    if summary_text:
+        cleaned = html.unescape(re.sub(r"<[^>]+>", " ", summary_text))
+        cleaned = re.sub(r"\s+", " ", cleaned).strip()
+    else:
+        cleaned = ""
+    if not cleaned:
+        return fallback
+    if len(cleaned) <= 500:
+        return cleaned
+    truncated = cleaned[:500].rstrip()
+    last_sentence = max(truncated.rfind(". "), truncated.rfind(".\n"), truncated.rfind(".\t"))
+    if last_sentence > 200:
+        truncated = truncated[:last_sentence + 1]
+    return truncated.strip()
 
 def parse_company(feed_name, link):
     if ":" in feed_name:
@@ -148,6 +166,7 @@ def iter_feed(name, url, vertical="ai"):
         except Exception:
             date_str = ""
         summary_text = (e.get("summary") or "").strip()
+        clean_summary = normalize_summary(summary_text, fallback=title)
         text_blob = f"{title}\n{summary_text}"
         company = parse_company(name, link)
         status = classify_status(text_blob)
@@ -166,7 +185,7 @@ def iter_feed(name, url, vertical="ai"):
             "last_seen": today,
             "change_type": "New" if status in ("Announced","Preview") else ("Launch" if status=="Shipped" else "Update"),
             "version": "",
-            "summary": title,
+            "summary": clean_summary,
             "source_title": title,
             "source_url": link,
             "source_type": "RSS/Blog",
@@ -200,6 +219,8 @@ def upsert(rows, incoming):
             rows[i]["summary"] = incoming["summary"]
             rows[i]["tags"] = incoming.get("tags", old.get("tags",""))
             return "promoted", rows[i]
+        if incoming.get("summary"):
+            rows[i]["summary"] = incoming["summary"]
         return "updated", rows[i]
     else:
         rows.append(incoming)
@@ -228,9 +249,22 @@ def make_digest(rows, items, days=None, limit=None):
 
     fn = os.path.join(DIGEST_DIR, f"daily_{today.isoformat()}.md")
     lines = [f"# AI Radar — {today.isoformat()}", ""]
+
+    def digest_summary(row):
+        raw = (row.get("summary") or "").strip()
+        if raw:
+            return raw
+        notes = (row.get("notes") or "").strip()
+        if notes:
+            return notes
+        return (row.get("source_title") or "").strip()
+
     for r in items:
         lines.append(f"## {r['company']}: {r['product']} — **{r['status']}**")
-        lines.append(f"- {r['summary']}")
+        summary = digest_summary(r)
+        if summary:
+            lines.append(summary)
+        lines.append("")
         lines.append(f"- Category: {r['category']}  |  Change: {r['change_type']}  |  Tags: {r.get('tags','')}")
         lines.append(f"- Source: {r['source_title']} — {r['source_url']}")
         lines.append("")

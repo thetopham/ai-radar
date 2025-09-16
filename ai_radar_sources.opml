@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>AI Radar Sources</title>
+  </head>
+  <body>
+    <outline text="AI Radar">
+      <outline text="OpenAI:News" type="rss" xmlUrl="https://openai.com/news/rss.xml"/>
+      <outline text="Google:AI" type="rss" xmlUrl="https://blog.google/technology/ai/rss/"/>
+      <outline text="Google:DeepMind" type="rss" xmlUrl="https://blog.google/technology/google-deepmind/rss/"/>
+      <outline text="Google:Research" type="rss" xmlUrl="https://research.google/blog/rss/"/>
+      <outline text="Microsoft:AI" type="rss" xmlUrl="https://www.microsoft.com/en-us/ai/blog/feed/"/>
+      <outline text="NVIDIA:Blog" type="rss" xmlUrl="https://blogs.nvidia.com/feed/"/>
+      <outline text="NVIDIA:Newsroom" type="rss" xmlUrl="https://nvidianews.nvidia.com/rss"/>
+      <outline text="AWS:ML" type="rss" xmlUrl="https://aws.amazon.com/blogs/machine-learning/feed/"/>
+      <outline text="Apple:MLResearch" type="rss" xmlUrl="https://machinelearning.apple.com/feed.xml"/>
+      <outline text="HuggingFace:Blog" type="rss" xmlUrl="https://huggingface.co/blog/feed.xml"/>
+    </outline>
+  </body>
+</opml>

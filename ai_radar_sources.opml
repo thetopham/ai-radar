@@ -1,20 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <opml version="2.0">
-  <head>
-    <title>AI Radar Sources</title>
-  </head>
+  <head><title>AI Radar Sources (AI · XR · Robotics)</title></head>
   <body>
     <outline text="AI Radar">
-      <outline text="OpenAI:News" type="rss" xmlUrl="https://openai.com/news/rss.xml"/>
-      <outline text="Google:AI" type="rss" xmlUrl="https://blog.google/technology/ai/rss/"/>
-      <outline text="Google:DeepMind" type="rss" xmlUrl="https://blog.google/technology/google-deepmind/rss/"/>
-      <outline text="Google:Research" type="rss" xmlUrl="https://research.google/blog/rss/"/>
-      <outline text="Microsoft:AI" type="rss" xmlUrl="https://www.microsoft.com/en-us/ai/blog/feed/"/>
-      <outline text="NVIDIA:Blog" type="rss" xmlUrl="https://blogs.nvidia.com/feed/"/>
-      <outline text="NVIDIA:Newsroom" type="rss" xmlUrl="https://nvidianews.nvidia.com/rss"/>
-      <outline text="AWS:ML" type="rss" xmlUrl="https://aws.amazon.com/blogs/machine-learning/feed/"/>
-      <outline text="Apple:MLResearch" type="rss" xmlUrl="https://machinelearning.apple.com/feed.xml"/>
-      <outline text="HuggingFace:Blog" type="rss" xmlUrl="https://huggingface.co/blog/feed.xml"/>
+
+      <!-- AI: big vendors (kept your originals) -->
+      <outline text="AI · Company Blogs">
+        <outline text="OpenAI:News" type="rss" xmlUrl="https://openai.com/news/rss.xml"/>
+        <outline text="Google:AI" type="rss" xmlUrl="https://blog.google/technology/ai/rss/"/>
+        <outline text="Google:DeepMind" type="rss" xmlUrl="https://blog.google/technology/google-deepmind/rss/"/>
+        <outline text="Google:Research" type="rss" xmlUrl="https://research.google/blog/rss/"/>
+        <outline text="Microsoft:AI" type="rss" xmlUrl="https://www.microsoft.com/en-us/ai/blog/feed/"/>
+        <outline text="NVIDIA:Blog" type="rss" xmlUrl="https://blogs.nvidia.com/feed/"/>
+        <outline text="NVIDIA:Newsroom" type="rss" xmlUrl="https://nvidianews.nvidia.com/rss"/>
+        <outline text="AWS:ML" type="rss" xmlUrl="https://aws.amazon.com/blogs/machine-learning/feed/"/>
+        <outline text="Apple:MLResearch" type="rss" xmlUrl="https://machinelearning.apple.com/feed.xml"/>
+        <outline text="HuggingFace:Blog" type="rss" xmlUrl="https://huggingface.co/blog/feed.xml"/>
+        <!-- Extras -->
+        <outline text="Apple:Developer News" type="rss" xmlUrl="https://developer.apple.com/news/rss/news.rss"/>
+        <outline text="Apple:Newsroom" type="rss" xmlUrl="https://www.apple.com/newsroom/rss-feed.rss"/>
+        <outline text="Google:Keyword (All)" type="rss" xmlUrl="https://blog.google/rss/"/>
+      </outline>
+
+      <!-- XR / AR/VR -->
+      <outline text="XR · AR/VR">
+        <!-- Official vendor streams -->
+        <outline text="Google:XR & AR (Keyword)" type="rss" xmlUrl="https://blog.google/technology/xr-ar/rss/"/>
+        <!-- Community/press (high-signal) -->
+        <outline text="Road to VR" type="rss" xmlUrl="https://www.roadtovr.com/feed/"/>
+        <outline text="UploadVR" type="rss" xmlUrl="https://www.uploadvr.com/feed/"/>
+      </outline>
+
+      <!-- Robotics -->
+      <outline text="Robotics">
+        <outline text="Robohub" type="rss" xmlUrl="https://robohub.org/feed/"/>
+        <outline text="The Robot Report" type="rss" xmlUrl="https://www.therobotreport.com/feed/"/>
+      </outline>
+
+      <!-- Research firehose (use tags in your deduper) -->
+      <outline text="Research · arXiv">
+        <outline text="arXiv:cs.AI" type="rss" xmlUrl="https://arxiv.org/rss/cs.AI"/>
+        <outline text="arXiv:cs.RO (Robotics)" type="rss" xmlUrl="https://arxiv.org/rss/cs.RO"/>
+        <outline text="arXiv:cs.CV" type="rss" xmlUrl="https://arxiv.org/rss/cs.CV"/>
+      </outline>
+
+      <!-- Video keynotes (YouTube channels) -->
+      <!-- Tip: YouTube RSS works with channel_id: https://www.youtube.com/feeds/videos.xml?channel_id=XXXX -->
+      <outline text="Keynotes · YouTube">
+        <outline text="Google Developers (YouTube)" type="rss" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UC_x5XG1OV2P6uZZ5FSM9Ttw"/>
+        <outline text="Apple Developer (YouTube)" type="rss" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCE_M8A5yxnLfW0KghEeajjw"/>
+        <outline text="NVIDIA (YouTube)" type="rss" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCB-3g8xrXzQWQ0wGV5yl3Nw"/>
+        <outline text="Boston Dynamics (YouTube)" type="rss" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UC7vVhkEfw4nOGp8TyDk7RcQ"/>
+      </outline>
+
     </outline>
   </body>
 </opml>
